@@ -1,0 +1,4 @@
+components
+staticfiles
+*.pyc
+db.sqlite3

@@ -1,0 +1,39 @@
+header {
+  background-color: #002b5f;
+  background-image: linear-gradient(to bottom, #003069 0, #002b5f 100%);
+  background-image: -webkit-linear-gradient(to bottom, #003069 0, #002b5f 100%);
+  background-repeat: repeat-x;
+  padding: 20px 60px;
+  color: white;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  border-left: #f36d00 8px solid; }
+
+.gone {
+  display: none !important; }
+
+.github-entry {
+  line-height: 35px;
+  padding: 4px 0; }
+  .github-entry .entry-title {
+    color: #141414;
+    cursor: pointer; }
+
+.github-entry:hover {
+  background-color: #fafafa; }
+
+.tag {
+  font-weight: bold;
+  font-size: 11px;
+  color: white;
+  padding: 2px 4px;
+  margin: 1px 2px;
+  background-color: black;
+  border-radius: 3px; }
+
+.tag-filter {
+  cursor: pointer; }
+
+.tag-disabled {
+  opacity: 0.3; }
+
+/*# sourceMappingURL=global.css.map */

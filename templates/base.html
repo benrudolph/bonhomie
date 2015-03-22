@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bonhomie</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    {% load bootstrap3 %}
+    {% load pipeline %}
+
+    {% bootstrap_css %}
+    {% load staticfiles %}
+
+    {% stylesheet 'global' %}
+    {% block css %}
+    {% endblock %}
+
+    <script src="{% static 'jquery/jquery.js' %}"></script>
+    <script src="{% static 'underscore/underscore.js' %}"></script>
+    <script src="{% static 'moment/moment.js' %}"></script>
+    <script src="{% static 'knockout/dist/knockout.js' %}"></script>
+
+    {% bootstrap_javascript %}
+</head>
+
+<body>
+  {% bootstrap_messages %}
+  <div id="content">
+    {% block header %}
+        {% include "header.html" %}
+    {% endblock header %}
+    <div class="container-fluid">
+        {% block content %}
+        {% endblock content %}
+    </div>
+  </div>
+  {% block js %}
+  {% endblock js %}
+
+  {% block js_templates %}
+  {% endblock %}
+</body>
+</html>
+

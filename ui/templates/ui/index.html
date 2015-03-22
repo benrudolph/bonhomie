@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% load pipeline %}
+{% load staticfiles %}
+{% load markdown_deux_tags %}
+{% load ui_extras %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-offset-1 col-md-5">
+        <h2>What's new?</h2>
+    </div>
+    <div class="col-md-5">
+        <h4>Filters</h4>
+        <div class="filters">
+            {% for tag, color in tags %}
+            <span data-tag="{{ tag }}"
+                style="background-color: {{ color }}"
+                class="tag tag-filter">{{ tag }}</span>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<hr />
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="update-periods" data-bind="{ foreach: periods }">
+            <div class="update-period">
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-10">
+                        <h4 data-bind="text: $root.displayPeriod($data)"></h4>
+                    </div>
+                </div>
+                <div class="github-entries"
+                    data-bind="{ foreach: entries }">
+                    <div data-bind="attr: { class: 'github-entry row ' + tag }">
+                        <div class="col-md-2">
+                            <img width="35"
+                                height="35"
+                                data-bind="attr: { src: github_avatar_url }"
+                                class="img-responsive img-circle pull-right" />
+                        </div>
+                        <div class="col-md-6">
+                            <a class="entry-title" data-bind="click: $root.toggleEntryBody"><b data-bind="text: title"></b></a>
+                            <span
+                                class="tag"
+                                data-bind="text: tag, attr: { style: 'background-color: ' + $root.getTagColor($data) }"></span>
+                            <div class="entry-body gone">
+                                <img width="16" height="16" src="{% static 'ui/img/ajax-loader.gif' %}" />
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <a
+                                target="blank"
+                                class="pull-right"
+                                data-bind="attr: { href: url }">View on github</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 text-center">
+        <button class="load-more btn btn-primary">Load more</button>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+    {% javascript 'bonhomie' %}
+    <script>
+        $(document).ready(function() {
+            Bonhomie.app = new Bonhomie.App({ tags: {{ tags|JSON }} })
+            ko.applyBindings(Bonhomie.app)
+            Bonhomie.app.loadEntries()
+
+        });
+    </script>
+{% endblock %}
+
+{% block js_templates %}
+<script id="ko-github-entry"  type="text/html">
+
+</script>
+{% endblock %}

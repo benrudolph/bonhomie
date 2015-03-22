@@ -1,0 +1,8 @@
+django-extensions
+pytz
+django-bootstrap3
+django-bower
+django-markdown-deux
+django-pipeline
+DjangoRestless
+requests
